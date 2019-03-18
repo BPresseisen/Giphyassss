@@ -1,5 +1,5 @@
 //  Initial array of topics
-var giphs  = ["Purim", "Tennis", "Sandwiches", "Beer", "Air Jordans"];
+var giphs  = ["purim", "tennis", "sandwiches", "beer", "air jordans"];
 
 window.onload = function() {
 
@@ -46,9 +46,9 @@ function displayGiphs(){
 
 //  Have to add rating above each giph
 
-        // var giph = $(this).attr("data-name").trim();
+        var giph = $(this).attr("data-name").trim();
 
-        var giph = "beer";
+        // var giph = "beer";
 
         // var giph = $.get("http://api.giphy.com/v1/gifs/search?q=" + giph + "&api_key=sjbQh01WgqfLEnTUlhfHiF1n1Ul4TyIQ&limit=10");
         // giph.done(function(giphReturn) { console.log("giphReturn", giphReturn); });
@@ -81,7 +81,7 @@ function displayGiphs(){
         //  Displaying the rating
         // giphDiv.append(pOne);
 
-        // repeat the above for the title which also needs to be returned
+        // repeat the above for the TITLE which also needs to be returned
 
         //  Displaying the giph
         var imgGiph_s =  response.data[0].images.original_still.url;
@@ -93,7 +93,8 @@ function displayGiphs(){
         //  Creating an element to hold the image
         // var img = $("<img>").attr("src", imgGiph);
 
-        //  Creating a data-name for the giph
+        //  Creating a data-name for the giph--CAPTURE IT'S INDEXED POSITION IN THE AJAX OBJECT--TO BE USED
+        //  IN THE .on("click") method when going back to the AJAX OBJECT FOR THE NEEDED PROPERTIES (STILL, ANIMATE,//  STATE)
         // var img = $("<img>"").attr("data-name",response[i]);
 
         //  Appending the image
@@ -156,8 +157,12 @@ renderButtons();
 // $(".giph").on("click", function(event) {
 //         event.preventDefault();
 
-//         // capture the giph data-name...response[i]
-//         // use the data-name to reach the correct indexed-positioned spot in the resonse object
+//         // capture the giph data-name...response[i]...INDEXED POSITION IN THE AJAX OBJECT
+//         // use the data-name to reach the correct indexed-positioned spot in the resoonse object
+//         // declare these variables:
+//         // var stillGIPH
+//         // var animGIPH
+//         // var state
 //         // take note of the current src and if it is the animated, switch to still and VICE VERSA
 // }
 
