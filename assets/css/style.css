@@ -1,0 +1,57 @@
+.btnCol{
+
+    border-style: solid;
+    border-color: red;
+
+}
+
+.giphCol{
+
+    border-style: solid;
+    border-color: black;
+
+
+}
+
+.searchCol{
+
+    border-style: solid;
+    border-color: green;
+    padding: 0px;
+
+}
+
+.add-topic{
+
+    margin-left:3px;
+    margin-bottom: 3px;
+}
+
+#topic-input{
+
+    margin-top:3px;
+
+}
+
+.lblTopic{
+
+    margin-top:3px;
+    margin-left:3px;
+
+}
+.giph-btn{
+
+    margin-left: 3px;
+    margin-right: 3px;  
+    margin-bottom: 3px;
+    margin-top: 3px;
+    width:100px;
+
+}
+
+.giph-btn:hover{
+
+    background-color: blue;
+    color:whitesmoke;
+}
+

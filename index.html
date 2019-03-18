@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GIPHYASSSS</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-sm-12 btnCol">
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8 giphCol">
+
+        </div>
+
+
+        <div class="col-sm-4 searchCol">
+                <form id="topic-form">
+                  <label class="lblTopic" for="topic-input">Type-in a Topic here!</label>
+                  <input type="text" id="topic-input">
+                  <br>
+                  <div id="blankSearch" class="alert alert-danger invisible" role="alert">
+                    You cannnot add a blank topic. Please enter a topic, then click the button below.
+                  </div>
+                  <input class="add-topic" type="submit" value="Add a Topic here!">
+                </form>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+<div class="myModal">
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      You cannot add a blank topic button. Please try again.  
+    </div>
+  </div>
+</div> -->
+
+<!-- <script type="text/javascript">
+    // Example queryURL for Giphy API
+    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+    });
+  </script> -->
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/javascript/app.js"> </script>
+
+</body>
+</html>
