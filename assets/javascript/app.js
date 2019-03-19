@@ -46,9 +46,11 @@ function displayGiphs(){
 
 //  Have to add rating above each giph
 
-        var giph = $(this).attr("data-name").trim();
+        event.preventDefault();
 
-        // var giph = "beer";
+        $(".giphCol").empty();
+
+        var giph = $(this).attr("data-name");
 
         // var giph = $.get("http://api.giphy.com/v1/gifs/search?q=" + giph + "&api_key=sjbQh01WgqfLEnTUlhfHiF1n1Ul4TyIQ&limit=10");
         // giph.done(function(giphReturn) { console.log("giphReturn", giphReturn); });
@@ -64,45 +66,67 @@ function displayGiphs(){
                 url: queryURL,
                 method: "GET"
                 }).then(function(response) {
-                console.log(response); 
-        });      
+                console.log(response);     
 
         //  Giphyassss API key: sjbQh01WgqfLEnTUlhfHiF1n1Ul4TyIQ -->
+        
+        console.log("response length is: " + response.data.length);
 
-        //  Creating a div to hold the giph
-        // var giphDiv = $("<div class='giph'>");
+        for(i=0;i<response.data.length;i++){
+                
+                //  Creating a div to hold the giph
+                var giphDiv = $("<div class='giph'>");
 
-        //  Storing the rating data
-        // var rating = response.rating;
+                //  Storing the title data
+                var title = response.data[i].title;
+                console.log(title);     
+        
+                //  Creating an element to have the title displayed
+                var pOne = $("<p>").text("Title: " + title);
 
-        //  Creating an element to have the rating displayed
-        // var pOne = $("<p>").text("Rating: " + rating);
+                //  Displaying the title
+                giphDiv.append(pOne);
 
-        //  Displaying the rating
-        // giphDiv.append(pOne);
+                //  Storing the rating data
+                var rating = response.data[i].rating;
 
-        // repeat the above for the TITLE which also needs to be returned
+                //  Creating an element to have the rating displayed
+                var pTwo = $("<p>").text("Rating: " + rating);
 
-        //  Displaying the giph
-        var imgGiph_s =  response.data[0].images.original_still.url;
-        console.log(imgGiph_s);
+                //  Displaying the rating
+                giphDiv.append(pTwo);
 
-        var imgGiph = response.data[0].images.original.url;
-        console.log(imgGiph);
+                //  Displaying the giph as STILL
+                var imgGiph =  response.data[i].images.original_still.url;
+                
+                // imgGiph for ANIMATED VERSION
+                // var imgGiph = response.data[i].images.original.url;
+                
+                //  Creating an element to hold the image
+                //  Creating a data-name for the giph--CAPTURE IT'S INDEXED POSITION IN THE AJAX OBJECT--TO BE USED
+                //  IN THE .on("click") method when going back to the AJAX OBJECT FOR THE NEEDED PROPERTIES (STILL
+                //  ANIMATE,//  STATE)
 
-        //  Creating an element to hold the image
-        // var img = $("<img>").attr("src", imgGiph);
+                // var img = $("<img>").attr("src", imgGiph "data-name", response.data[i] "state", "still"));
 
-        //  Creating a data-name for the giph--CAPTURE IT'S INDEXED POSITION IN THE AJAX OBJECT--TO BE USED
-        //  IN THE .on("click") method when going back to the AJAX OBJECT FOR THE NEEDED PROPERTIES (STILL, ANIMATE,//  STATE)
-        // var img = $("<img>"").attr("data-name",response[i]);
+                var img = $("<img>")
+                        .attr("src", imgGiph)
+                        .attr("data-still", response.data[i].images.original_still.url)
+                        .attr("data-animate", response.data[i].images.original.url)
+                        .attr("data-state", "still");
 
-        //  Appending the image
-        // giphDiv.append(imgGiph);
+                //  Appending the image
+                giphDiv.append(img);
 
-        //  Putting the new giphs above the previous giphs
-        // $("#giph-col").prepend(giphDiv);
+                var pDash = $("<p>").text("============");
 
+                giphDiv.append(pDash)
+
+                //  Putting the new giphs above the previous giphs
+                $(".giphCol").append(giphDiv);
+                };
+
+        });  
 };
 
 //Function for displaying giph data
@@ -154,27 +178,32 @@ renderButtons();
 
 // to be used when a giph is clicked
 
-// $(".giph").on("click", function(event) {
-//         event.preventDefault();
+$(document).on("click", "img", function(event) {
+        event.preventDefault();
 
-//         // capture the giph data-name...response[i]...INDEXED POSITION IN THE AJAX OBJECT
-//         // use the data-name to reach the correct indexed-positioned spot in the resoonse object
-//         // declare these variables:
-//         // var stillGIPH
-//         // var animGIPH
-//         // var state
-//         // take note of the current src and if it is the animated, switch to still and VICE VERSA
-// }
+        var state = $(this).attr("data-state");
+        console.log("the state is: " + state);
+        // if(state==="still"){
+        //         $(this)
+        //         .attr("data-state", "animate")
+        //         .attr("src", response.data[i].images.original.url)
+        // }else if(state==="animate"){
+        //         $(this)
+        //         .attr("data-state", "still")
+        //         .attr("src", response.data[i].images.original_still.url)
+        // };
+        if (state === "still") {
+                $(this).attr("src", $(this).attr("data-animate"));
+                $(this).attr("data-state", "animate");
+              } else {
+                $(this).attr("src", $(this).attr("data-still"));
+                $(this).attr("data-state", "still");
+              }
+});
 
 // to be used when a topic-button atop the page is clicked to call the displayGiphs function and render 10 giphs
 // from the response object
 
-$(".giph-btn").on("click", function(event) {
-// $(document).on("click", ".giph-btn" function(event) {
-       
-        event.preventDefault();
+$(document).on("click", ".giph-btn", displayGiphs);
 
-        console.log("string");
 
-        displayGiphs();
-});
